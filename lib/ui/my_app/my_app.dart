@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app/ui/auth/forgot_password_widget.dart';
-import 'package:travel_app/ui/auth/reset_password_verification_widget.dart';
-import 'package:travel_app/ui/auth/sign_in_widget.dart';
-import 'package:travel_app/ui/auth/sign_up_widget.dart';
+import 'package:travel_app/ui/auth/forgot_password_screen.dart';
+import 'package:travel_app/ui/auth/reset_password_verification_screen.dart';
+import 'package:travel_app/ui/auth/sign_in_screen.dart';
+import 'package:travel_app/ui/auth/sign_up_screen.dart';
 import 'package:travel_app/ui/destination/destination_details_widget.dart';
 import 'package:travel_app/ui/get_started/hello_screen.dart';
 import 'package:travel_app/ui/home/home_screen.dart';
@@ -36,16 +36,16 @@ class MyApp extends StatelessWidget {
           return const TripsTakePeopleScreen();
         },
         '/auth': (context) {
-          return const SignInWidget();
+          return const SignInScreen();
         },
         '/auth/signup': (context) {
-          return const SignUpWidget();
+          return const SignUpScreen();
         },
         '/auth/forgotPassword': (context) {
-          return const ForgotPasswordWidget();
+          return const ForgotPasswordScreen();
         },
         '/auth/forgotPassword/verification': (context) {
-          return ResetPasswordVerificationWidget();
+          return ResetPasswordVerificationScreen();
         },
         '/home': (context) {
           return MainScreen();

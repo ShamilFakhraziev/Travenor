@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/helpers/colors/app_color.dart';
 
-class ForgotPasswordWidget extends StatelessWidget {
-  const ForgotPasswordWidget({super.key});
+class ForgotPasswordScreen extends StatelessWidget {
+  const ForgotPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

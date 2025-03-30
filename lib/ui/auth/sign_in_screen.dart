@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:travel_app/helpers/colors/app_color.dart';
 import 'package:travel_app/helpers/images/app_image.dart';
 
-class SignInWidget extends StatelessWidget {
-  const SignInWidget({super.key});
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

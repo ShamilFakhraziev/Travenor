@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:travel_app/helpers/colors/app_color.dart';
 
-class ResetPasswordVerificationWidget extends StatelessWidget {
-  const ResetPasswordVerificationWidget({super.key});
+class ResetPasswordVerificationScreen extends StatelessWidget {
+  const ResetPasswordVerificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
