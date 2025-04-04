@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:travel_app/helpers/colors/app_color.dart';
 
 class ResetPasswordVerificationScreen extends StatelessWidget {
@@ -176,6 +177,10 @@ class VerifyCodeItemWidget extends StatelessWidget {
       child: TextField(
         textInputAction: TextInputAction.next,
         keyboardType: TextInputType.number,
+        focusNode: FocusNode(),
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.digitsOnly,
+        ],
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           filled: true,

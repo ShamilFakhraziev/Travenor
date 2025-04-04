@@ -32,7 +32,6 @@ class _ChatWidgetState extends State<ChatWidget> {
   List<ChatMessage> _messages = <ChatMessage>[];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     final ChatMessage message = ChatMessage(
       companion: widget.companion,
