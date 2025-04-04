@@ -12,23 +12,23 @@ class WorldIsWideScreen extends StatelessWidget {
       color: Colors.white,
       child: Column(
         children: [
-          _ImageWidget(),
+          ImageWidget(),
           SizedBox(height: 30),
-          _Title(),
+          TitleWidget(),
           SizedBox(height: 10),
-          _Description(),
+          DescriptionWidget(),
           SizedBox(height: 20),
           SelectBarWidget(selectedPageNumber: 1, pagesCount: 3),
           SizedBox(height: 30),
-          _GetStartedButton(),
+          GetStartedButtonWidget(),
         ],
       ),
     );
   }
 }
 
-class _GetStartedButton extends StatelessWidget {
-  const _GetStartedButton({super.key});
+class GetStartedButtonWidget extends StatelessWidget {
+  const GetStartedButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +58,8 @@ class _GetStartedButton extends StatelessWidget {
   }
 }
 
-class _Title extends StatelessWidget {
-  const _Title({super.key});
+class TitleWidget extends StatelessWidget {
+  const TitleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +110,8 @@ class _Title extends StatelessWidget {
   }
 }
 
-class _Description extends StatelessWidget {
-  const _Description({super.key});
+class DescriptionWidget extends StatelessWidget {
+  const DescriptionWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -133,8 +133,8 @@ class _Description extends StatelessWidget {
   }
 }
 
-class _ImageWidget extends StatelessWidget {
-  const _ImageWidget({super.key});
+class ImageWidget extends StatelessWidget {
+  const ImageWidget({super.key});
 
   final double _radiusOfBorder = 30;
 

@@ -15,24 +15,24 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 30),
-          _AppBarWidget(),
-          _TitleWidget(),
-          _MainContentWidget(),
+          AppBarWidget(),
+          TitleWidget(),
+          MainContentWidget(),
         ],
       ),
     );
   }
 }
 
-class _MainContentWidget extends StatelessWidget {
-  const _MainContentWidget({super.key});
+class MainContentWidget extends StatelessWidget {
+  const MainContentWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          _MainContentTitleWidget(),
+          MainContentTitleWidget(),
           SizedBox(height: 10),
           DestinationsListWidget(),
         ],
@@ -41,8 +41,8 @@ class _MainContentWidget extends StatelessWidget {
   }
 }
 
-class _MainContentTitleWidget extends StatelessWidget {
-  const _MainContentTitleWidget({super.key});
+class MainContentTitleWidget extends StatelessWidget {
+  const MainContentTitleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,8 +77,8 @@ class _MainContentTitleWidget extends StatelessWidget {
   }
 }
 
-class _TitleWidget extends StatelessWidget {
-  const _TitleWidget({super.key});
+class TitleWidget extends StatelessWidget {
+  const TitleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -128,8 +128,8 @@ class _TitleWidget extends StatelessWidget {
   }
 }
 
-class _AppBarWidget extends StatelessWidget {
-  const _AppBarWidget({super.key});
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

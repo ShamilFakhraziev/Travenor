@@ -184,7 +184,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
       child: Column(
         children: [
           SizedBox(height: 30),
-          _AppBarWidget(),
+          AppBarWidget(),
           SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -253,7 +253,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             _getEventsForDay(
                               _selectedDay ?? _focusedDay,
                             )[index];
-                        return _SelectedDayItemWidget(dest: _dest);
+                        return SelectedDayItemWidget(dest: _dest);
                       },
                     ),
                   ),
@@ -267,8 +267,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
   }
 }
 
-class _AppBarWidget extends StatelessWidget {
-  const _AppBarWidget({super.key});
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -288,7 +288,7 @@ class _AppBarWidget extends StatelessWidget {
                 backgroundColor: Color(0x101B1E28),
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed('/home');
+                Navigator.of(context).pushNamed('/');
               },
               icon: Padding(
                 padding: const EdgeInsets.only(left: 6),
@@ -330,8 +330,8 @@ class _AppBarWidget extends StatelessWidget {
   }
 }
 
-class _SelectedDayItemWidget extends StatelessWidget {
-  const _SelectedDayItemWidget({super.key, required this.dest});
+class SelectedDayItemWidget extends StatelessWidget {
+  const SelectedDayItemWidget({super.key, required this.dest});
   final Destination dest;
   @override
   Widget build(BuildContext context) {

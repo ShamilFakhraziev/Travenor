@@ -22,9 +22,9 @@ class _MessageScreenState extends State<MessageScreen> {
         child: Column(
           children: [
             SizedBox(height: 30),
-            _AppBarWidget(),
+            AppBarWidget(),
             SizedBox(height: 30),
-            _MessagesAndEditButtonWidget(),
+            MessagesAndEditButtonWidget(),
             SizedBox(height: 10),
             SizedBox(
               height: 48,
@@ -65,7 +65,7 @@ class _MessageScreenState extends State<MessageScreen> {
                 ),
               ),
             ),
-            Align(alignment: Alignment.topLeft, child: _MessagesListWidget()),
+            Align(alignment: Alignment.topLeft, child: MessagesListWidget()),
           ],
         ),
       ),
@@ -73,8 +73,8 @@ class _MessageScreenState extends State<MessageScreen> {
   }
 }
 
-class _MessagesListWidget extends StatelessWidget {
-  _MessagesListWidget({super.key});
+class MessagesListWidget extends StatelessWidget {
+  MessagesListWidget({super.key});
   final Message message = Message(
     companion: User(
       id: 1,
@@ -97,7 +97,7 @@ class _MessagesListWidget extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 10),
             child: Stack(
               children: [
-                _MessagesListItemWidget(message: message),
+                MessagesListItemWidget(message: message),
                 SizedBox(
                   width: 400,
                   height: 60,
@@ -127,8 +127,8 @@ class _MessagesListWidget extends StatelessWidget {
   }
 }
 
-class _MessagesListItemWidget extends StatelessWidget {
-  _MessagesListItemWidget({super.key, required this.message});
+class MessagesListItemWidget extends StatelessWidget {
+  MessagesListItemWidget({super.key, required this.message});
   final Message message;
   final TextStyle style = TextStyle(
     fontSize: 11,
@@ -283,8 +283,8 @@ class Message {
 
 enum MessageStatus { Checked, Unchecked }
 
-class _MessagesAndEditButtonWidget extends StatelessWidget {
-  const _MessagesAndEditButtonWidget({super.key});
+class MessagesAndEditButtonWidget extends StatelessWidget {
+  const MessagesAndEditButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -317,8 +317,8 @@ class _MessagesAndEditButtonWidget extends StatelessWidget {
   }
 }
 
-class _AppBarWidget extends StatelessWidget {
-  const _AppBarWidget({super.key});
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -13,14 +13,14 @@ class MyProfileScreen extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            _AppBarWidget(),
-            _ProfileImage(),
+            AppBarWidget(),
+            ProfileImage(),
             SizedBox(height: 8),
-            _ProfileUserName(),
+            ProfileUserName(),
             SizedBox(height: 25),
-            _ProfileAchievements(),
+            ProfileAchievements(),
             SizedBox(height: 25),
-            Align(alignment: Alignment.centerLeft, child: _ProfileSettings()),
+            Align(alignment: Alignment.centerLeft, child: ProfileSettings()),
           ],
         ),
       ),
@@ -28,8 +28,8 @@ class MyProfileScreen extends StatelessWidget {
   }
 }
 
-class _ProfileSettings extends StatelessWidget {
-  const _ProfileSettings({super.key});
+class ProfileSettings extends StatelessWidget {
+  const ProfileSettings({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +37,19 @@ class _ProfileSettings extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          _SettingsItem(icon: Icons.person_outline, name: "Profile"),
-          _SettingsItem(icon: Icons.bookmark_outline, name: "Bookmarked"),
-          _SettingsItem(icon: Icons.history, name: "Previous Trip"),
-          _SettingsItem(icon: Icons.settings_outlined, name: "Settings"),
-          _SettingsItem(icon: Icons.public_rounded, name: "Version"),
+          SettingsItem(icon: Icons.person_outline, name: "Profile"),
+          SettingsItem(icon: Icons.bookmark_outline, name: "Bookmarked"),
+          SettingsItem(icon: Icons.history, name: "Previous Trip"),
+          SettingsItem(icon: Icons.settings_outlined, name: "Settings"),
+          SettingsItem(icon: Icons.public_rounded, name: "Version"),
         ],
       ),
     );
   }
 }
 
-class _SettingsItem extends StatelessWidget {
-  const _SettingsItem({super.key, required this.icon, required this.name});
+class SettingsItem extends StatelessWidget {
+  const SettingsItem({super.key, required this.icon, required this.name});
   final IconData icon;
   final String name;
   @override
@@ -90,8 +90,8 @@ class _SettingsItem extends StatelessWidget {
   }
 }
 
-class _ProfileAchievements extends StatelessWidget {
-  const _ProfileAchievements({super.key});
+class ProfileAchievements extends StatelessWidget {
+  const ProfileAchievements({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -106,19 +106,19 @@ class _ProfileAchievements extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              _AchievementItem(title: "Reward Points", value: 360),
+              AchievementItem(title: "Reward Points", value: 360),
               Container(
                 width: 1,
                 height: 78,
                 color: const Color.fromRGBO(158, 158, 158, 0.4),
               ),
-              _AchievementItem(title: "Travel Trips", value: 238),
+              AchievementItem(title: "Travel Trips", value: 238),
               Container(
                 width: 1,
                 height: 78,
                 color: const Color.fromRGBO(158, 158, 158, 0.4),
               ),
-              _AchievementItem(title: "Bucket List", value: 473),
+              AchievementItem(title: "Bucket List", value: 473),
             ],
           ),
         ),
@@ -127,8 +127,8 @@ class _ProfileAchievements extends StatelessWidget {
   }
 }
 
-class _AchievementItem extends StatelessWidget {
-  const _AchievementItem({super.key, required this.title, required this.value});
+class AchievementItem extends StatelessWidget {
+  const AchievementItem({super.key, required this.title, required this.value});
   final String title;
   final int value;
   @override
@@ -160,8 +160,8 @@ class _AchievementItem extends StatelessWidget {
   }
 }
 
-class _ProfileUserName extends StatelessWidget {
-  const _ProfileUserName({super.key});
+class ProfileUserName extends StatelessWidget {
+  const ProfileUserName({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -192,8 +192,8 @@ class _ProfileUserName extends StatelessWidget {
   }
 }
 
-class _ProfileImage extends StatelessWidget {
-  const _ProfileImage({super.key});
+class ProfileImage extends StatelessWidget {
+  const ProfileImage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -204,8 +204,8 @@ class _ProfileImage extends StatelessWidget {
   }
 }
 
-class _AppBarWidget extends StatelessWidget {
-  const _AppBarWidget({super.key});
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

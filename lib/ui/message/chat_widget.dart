@@ -16,7 +16,7 @@ class _ChatWidgetState extends State<ChatWidget> {
 
   bool _isMe = false;
   void sendMessage(String text) {
-    _ChatMessage? newMessage = _ChatMessage(
+    ChatMessage? newMessage = ChatMessage(
       body: text,
       isMe: _isMe,
       companion: widget.companion,
@@ -29,12 +29,12 @@ class _ChatWidgetState extends State<ChatWidget> {
     setState(() {});
   }
 
-  List<_ChatMessage> _messages = <_ChatMessage>[];
+  List<ChatMessage> _messages = <ChatMessage>[];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    final _ChatMessage message = _ChatMessage(
+    final ChatMessage message = ChatMessage(
       companion: widget.companion,
       body:
           "Hellfsssssssssssssssssfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffsssssssssssso",
@@ -57,8 +57,8 @@ class _ChatWidgetState extends State<ChatWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 30),
-              _AppBarWidget(companion: widget.companion),
-              _MessagesListWidget(messages: _messages),
+              AppBarWidget(companion: widget.companion),
+              MessagesListWidget(messages: _messages),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -123,10 +123,10 @@ class _ChatWidgetState extends State<ChatWidget> {
   }
 }
 
-class _MessagesListWidget extends StatelessWidget {
-  _MessagesListWidget({super.key, required this.messages});
+class MessagesListWidget extends StatelessWidget {
+  MessagesListWidget({super.key, required this.messages});
 
-  final List<_ChatMessage> messages;
+  final List<ChatMessage> messages;
 
   @override
   Widget build(BuildContext context) {
@@ -145,13 +145,13 @@ class _MessagesListWidget extends StatelessWidget {
   }
 }
 
-class _ChatMessage extends StatelessWidget {
+class ChatMessage extends StatelessWidget {
   final String body;
   final MessageStatus status;
   final DateTime date;
   final bool isMe;
   final User companion;
-  _ChatMessage({
+  ChatMessage({
     required this.body,
     required this.isMe,
     required this.companion,
@@ -247,8 +247,8 @@ class _ChatMessage extends StatelessWidget {
   }
 }
 
-class _AppBarWidget extends StatelessWidget {
-  const _AppBarWidget({super.key, required this.companion});
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({super.key, required this.companion});
   final User companion;
   @override
   Widget build(BuildContext context) {

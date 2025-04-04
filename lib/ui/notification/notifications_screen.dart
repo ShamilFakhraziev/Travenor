@@ -13,18 +13,18 @@ class NotificationsScreen extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 30),
-          _AppBarWidget(),
+          AppBarWidget(),
           SizedBox(height: 20),
-          _NotificationButtonsWidget(),
-          _NotificationsListWidget(),
+          NotificationButtonsWidget(),
+          NotificationsListWidget(),
         ],
       ),
     );
   }
 }
 
-class _NotificationButtonsWidget extends StatelessWidget {
-  const _NotificationButtonsWidget({super.key});
+class NotificationButtonsWidget extends StatelessWidget {
+  const NotificationButtonsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +96,8 @@ class _NotificationButtonsWidget extends StatelessWidget {
   }
 }
 
-class _NotificationsListWidget extends StatelessWidget {
-  const _NotificationsListWidget({super.key});
+class NotificationsListWidget extends StatelessWidget {
+  const NotificationsListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +122,7 @@ class _NotificationsListWidget extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: _NotificationItemWidget(
+            child: NotificationItemWidget(
               userNotification: notifications[index],
             ),
           );
@@ -132,8 +132,8 @@ class _NotificationsListWidget extends StatelessWidget {
   }
 }
 
-class _NotificationItemWidget extends StatelessWidget {
-  const _NotificationItemWidget({super.key, required this.userNotification});
+class NotificationItemWidget extends StatelessWidget {
+  const NotificationItemWidget({super.key, required this.userNotification});
   final UserNotification userNotification;
   @override
   Widget build(BuildContext context) {
@@ -207,8 +207,8 @@ class _NotificationItemWidget extends StatelessWidget {
   }
 }
 
-class _AppBarWidget extends StatelessWidget {
-  const _AppBarWidget({super.key});
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

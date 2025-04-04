@@ -12,10 +12,10 @@ class SignInScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           alignment: Alignment.center,
-          onPressed: () => Navigator.of(context).pop(),
+          // TODO:Minor.Когда в onPressed, онтап и тд единственный метод без аргументов - можем убрать скобки у метода и конструкцию () =>
+          onPressed: Navigator.of(context).pop,
           icon: Icon(Icons.arrow_back_ios),
           style: IconButton.styleFrom(
-            backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40),
             ),
@@ -30,11 +30,11 @@ class SignInScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 40),
-                  const _TitleWidget(),
+                  const TitleWidget(),
                   SizedBox(height: 40),
-                  _AuthForm(),
+                  AuthForm(),
                   SizedBox(height: 30),
-                  _RedirectToSignUpWidget(),
+                  RedirectToSignUpWidget(),
                   Text(
                     "Or connect",
                     style: TextStyle(
@@ -44,7 +44,7 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 40),
-                  _FooterWidget(),
+                  FooterWidget(),
                 ],
               ),
             ),
@@ -55,8 +55,8 @@ class SignInScreen extends StatelessWidget {
   }
 }
 
-class _FooterWidget extends StatelessWidget {
-  const _FooterWidget({super.key});
+class FooterWidget extends StatelessWidget {
+  const FooterWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +81,8 @@ class _FooterWidget extends StatelessWidget {
   }
 }
 
-class _RedirectToSignUpWidget extends StatelessWidget {
-  const _RedirectToSignUpWidget({super.key});
+class RedirectToSignUpWidget extends StatelessWidget {
+  const RedirectToSignUpWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -117,14 +117,14 @@ class _RedirectToSignUpWidget extends StatelessWidget {
   }
 }
 
-class _AuthForm extends StatefulWidget {
-  const _AuthForm({super.key});
+class AuthForm extends StatefulWidget {
+  const AuthForm();
 
   @override
-  State<_AuthForm> createState() => _AuthFormState();
+  State<AuthForm> createState() => _AuthFormState();
 }
 
-class _AuthFormState extends State<_AuthForm> {
+class _AuthFormState extends State<AuthForm> {
   bool isObscuredPassword = true;
 
   @override
@@ -134,6 +134,7 @@ class _AuthFormState extends State<_AuthForm> {
         SizedBox(
           height: 56,
           width: 350,
+          // TODO: Middle.Мог вынести в отдельный виджет AppTextField
           child: TextField(
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
@@ -141,6 +142,7 @@ class _AuthFormState extends State<_AuthForm> {
               fillColor: AppColor.backButtonColor,
               labelText: "Email",
               labelStyle: TextStyle(),
+              // TODO: Minor.Мог вынести в отдельную переменную transparentBorder
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide(color: Colors.transparent, width: 0),
@@ -176,13 +178,14 @@ class _AuthFormState extends State<_AuthForm> {
               fillColor: AppColor.backButtonColor,
               suffixIcon: IconButton(
                 onPressed: () {
-                  isObscuredPassword = !isObscuredPassword;
-                  setState(() {});
+                  setState(() {
+                    isObscuredPassword = !isObscuredPassword;
+                  });
                 },
+
                 icon: Icon(
-                  isObscuredPassword == false
-                      ? Icons.visibility
-                      : Icons.visibility_off,
+                  // TODO: Major.Какоу нахуй == false. Когда у тебя блуева переменная то она по дефолту равна true, а !она равна false
+                  isObscuredPassword ? Icons.visibility_off : Icons.visibility,
                 ),
               ),
               labelText: "Password",
@@ -229,14 +232,14 @@ class _AuthFormState extends State<_AuthForm> {
           ),
         ),
         SizedBox(height: 30),
-        _SignInButtonWidget(),
+        SignInButtonWidget(),
       ],
     );
   }
 }
 
-class _SignInButtonWidget extends StatelessWidget {
-  const _SignInButtonWidget({super.key});
+class SignInButtonWidget extends StatelessWidget {
+  const SignInButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -266,8 +269,8 @@ class _SignInButtonWidget extends StatelessWidget {
   }
 }
 
-class _TitleWidget extends StatelessWidget {
-  const _TitleWidget({super.key});
+class TitleWidget extends StatelessWidget {
+  const TitleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

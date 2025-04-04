@@ -30,11 +30,11 @@ class SignUpScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 40),
-                  const _TitleWidget(),
+                  const TitleWidget(),
                   SizedBox(height: 40),
-                  _RegistrationForm(),
+                  RegistrationForm(),
                   SizedBox(height: 30),
-                  _RedirectToSignInWidget(),
+                  RedirectToSignInWidget(),
                   Text(
                     "Or connect",
                     style: TextStyle(
@@ -44,7 +44,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20),
-                  _FooterWidget(),
+                  FooterWidget(),
                 ],
               ),
             ),
@@ -55,8 +55,8 @@ class SignUpScreen extends StatelessWidget {
   }
 }
 
-class _FooterWidget extends StatelessWidget {
-  const _FooterWidget({super.key});
+class FooterWidget extends StatelessWidget {
+  const FooterWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +81,8 @@ class _FooterWidget extends StatelessWidget {
   }
 }
 
-class _RedirectToSignInWidget extends StatelessWidget {
-  const _RedirectToSignInWidget({super.key});
+class RedirectToSignInWidget extends StatelessWidget {
+  const RedirectToSignInWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -117,14 +117,14 @@ class _RedirectToSignInWidget extends StatelessWidget {
   }
 }
 
-class _RegistrationForm extends StatefulWidget {
-  const _RegistrationForm({super.key});
+class RegistrationForm extends StatefulWidget {
+  const RegistrationForm({super.key});
 
   @override
-  State<_RegistrationForm> createState() => _RegistrationFormState();
+  State<RegistrationForm> createState() => _RegistrationFormState();
 }
 
-class _RegistrationFormState extends State<_RegistrationForm> {
+class _RegistrationFormState extends State<RegistrationForm> {
   bool isObscuredPassword = true;
 
   @override
@@ -260,14 +260,14 @@ class _RegistrationFormState extends State<_RegistrationForm> {
           ),
         ),
         SizedBox(height: 30),
-        _SignUpButtonWidget(),
+        SignUpButtonWidget(),
       ],
     );
   }
 }
 
-class _SignUpButtonWidget extends StatelessWidget {
-  const _SignUpButtonWidget({super.key});
+class SignUpButtonWidget extends StatelessWidget {
+  const SignUpButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -297,8 +297,8 @@ class _SignUpButtonWidget extends StatelessWidget {
   }
 }
 
-class _TitleWidget extends StatelessWidget {
-  const _TitleWidget({super.key});
+class TitleWidget extends StatelessWidget {
+  const TitleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

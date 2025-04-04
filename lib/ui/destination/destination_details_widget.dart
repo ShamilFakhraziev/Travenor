@@ -16,26 +16,26 @@ class DestinationDetailsWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _MainImageWidget(destination: destination),
+                  MainImageWidget(destination: destination),
                   SizedBox(height: 20),
-                  _TitleAndLocationWidget(destination: destination),
+                  TitleAndLocationWidget(destination: destination),
                   SizedBox(height: 24),
-                  _UnderImageInfoWidget(destination: destination),
+                  UnderImageInfoWidget(destination: destination),
                   SizedBox(height: 24),
-                  _DescriptionWidget(destination: destination),
+                  DescriptionWidget(destination: destination),
                 ],
               ),
             ),
           ),
-          _BookNowButtonWidget(),
+          BookNowButtonWidget(),
         ],
       ),
     );
   }
 }
 
-class _BookNowButtonWidget extends StatelessWidget {
-  const _BookNowButtonWidget({super.key});
+class BookNowButtonWidget extends StatelessWidget {
+  const BookNowButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +66,8 @@ class _BookNowButtonWidget extends StatelessWidget {
   }
 }
 
-class _DescriptionWidget extends StatelessWidget {
-  const _DescriptionWidget({super.key, required this.destination});
+class DescriptionWidget extends StatelessWidget {
+  const DescriptionWidget({super.key, required this.destination});
   final Destination destination;
   @override
   Widget build(BuildContext context) {
@@ -104,8 +104,8 @@ class _DescriptionWidget extends StatelessWidget {
   }
 }
 
-class _UnderImageInfoWidget extends StatelessWidget {
-  const _UnderImageInfoWidget({super.key, required this.destination});
+class UnderImageInfoWidget extends StatelessWidget {
+  const UnderImageInfoWidget({super.key, required this.destination});
   final Destination destination;
   @override
   Widget build(BuildContext context) {
@@ -179,8 +179,8 @@ class _UnderImageInfoWidget extends StatelessWidget {
   }
 }
 
-class _TitleAndLocationWidget extends StatelessWidget {
-  const _TitleAndLocationWidget({super.key, required this.destination});
+class TitleAndLocationWidget extends StatelessWidget {
+  const TitleAndLocationWidget({super.key, required this.destination});
   final Destination destination;
   @override
   Widget build(BuildContext context) {
@@ -216,8 +216,8 @@ class _TitleAndLocationWidget extends StatelessWidget {
   }
 }
 
-class _MainImageWidget extends StatelessWidget {
-  const _MainImageWidget({super.key, required this.destination});
+class MainImageWidget extends StatelessWidget {
+  const MainImageWidget({super.key, required this.destination});
 
   final Destination destination;
 

@@ -13,18 +13,18 @@ class EditProfileScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _AppBarWidget(),
-              _ProfileImage(),
+              AppBarWidget(),
+              ProfileImage(),
               SizedBox(height: 8),
-              _ProfileUserName(),
+              ProfileUserName(),
               SizedBox(height: 25),
-              _FirstNameWidget(),
+              FirstNameWidget(),
               SizedBox(height: 15),
-              _LastNameWidget(),
+              LastNameWidget(),
               SizedBox(height: 15),
-              _LocationWidget(),
+              LocationWidget(),
               SizedBox(height: 15),
-              _MobileNumberWidget(),
+              MobileNumberWidget(),
             ],
           ),
         ),
@@ -33,8 +33,8 @@ class EditProfileScreen extends StatelessWidget {
   }
 }
 
-class _MobileNumberWidget extends StatelessWidget {
-  const _MobileNumberWidget({super.key});
+class MobileNumberWidget extends StatelessWidget {
+  const MobileNumberWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -86,8 +86,8 @@ class _MobileNumberWidget extends StatelessWidget {
   }
 }
 
-class _LocationWidget extends StatelessWidget {
-  const _LocationWidget({super.key});
+class LocationWidget extends StatelessWidget {
+  const LocationWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -138,8 +138,8 @@ class _LocationWidget extends StatelessWidget {
   }
 }
 
-class _LastNameWidget extends StatelessWidget {
-  const _LastNameWidget({super.key});
+class LastNameWidget extends StatelessWidget {
+  const LastNameWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -190,8 +190,8 @@ class _LastNameWidget extends StatelessWidget {
   }
 }
 
-class _FirstNameWidget extends StatelessWidget {
-  const _FirstNameWidget({super.key});
+class FirstNameWidget extends StatelessWidget {
+  const FirstNameWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -242,8 +242,8 @@ class _FirstNameWidget extends StatelessWidget {
   }
 }
 
-class _ProfileUserName extends StatelessWidget {
-  const _ProfileUserName({super.key});
+class ProfileUserName extends StatelessWidget {
+  const ProfileUserName({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -281,8 +281,8 @@ class _ProfileUserName extends StatelessWidget {
   }
 }
 
-class _ProfileImage extends StatelessWidget {
-  const _ProfileImage({super.key});
+class ProfileImage extends StatelessWidget {
+  const ProfileImage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -293,8 +293,8 @@ class _ProfileImage extends StatelessWidget {
   }
 }
 
-class _AppBarWidget extends StatelessWidget {
-  const _AppBarWidget({super.key});
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

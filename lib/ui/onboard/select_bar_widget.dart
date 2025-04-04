@@ -14,14 +14,18 @@ class SelectBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _pagesBar = <Widget>[];
-    if (pagesCount == 0 ||
-        selectedPageNumber == 0 ||
-        pagesCount < selectedPageNumber)
+    final isZeroPages = pagesCount == 0;
+    final isPageSelected = selectedPageNumber <= 0;
+    final isPagesLessSelected = pagesCount < selectedPageNumber;
+
+    if (isZeroPages || isPageSelected || isPagesLessSelected) {
       return SizedBox.shrink();
-    for (int i = 1; i <= pagesCount; i++) {
-      _pagesBar.add(_Unselected());
     }
-    _pagesBar[selectedPageNumber - 1] = _Selected();
+
+    for (int i = 1; i <= pagesCount; i++) {
+      _pagesBar.add(UnselectedWidget());
+    }
+    _pagesBar[selectedPageNumber - 1] = SelectedWidget();
     return SizedBox(
       width: 35 + (13 * pagesCount.toDouble()),
       child: Row(
@@ -32,8 +36,8 @@ class SelectBarWidget extends StatelessWidget {
   }
 }
 
-class _Selected extends StatelessWidget {
-  const _Selected({super.key});
+class SelectedWidget extends StatelessWidget {
+  const SelectedWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +52,8 @@ class _Selected extends StatelessWidget {
   }
 }
 
-class _Unselected extends StatelessWidget {
-  const _Unselected({super.key});
+class UnselectedWidget extends StatelessWidget {
+  const UnselectedWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

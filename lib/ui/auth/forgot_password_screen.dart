@@ -29,9 +29,9 @@ class ForgotPasswordScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 40),
-                  const _TitleWidget(),
+                  const TitleWidget(),
                   SizedBox(height: 40),
-                  _ForgotPasswordFormWidget(),
+                  ForgotPasswordFormWidget(),
                 ],
               ),
             ),
@@ -42,15 +42,15 @@ class ForgotPasswordScreen extends StatelessWidget {
   }
 }
 
-class _ForgotPasswordFormWidget extends StatefulWidget {
-  const _ForgotPasswordFormWidget({super.key});
+class ForgotPasswordFormWidget extends StatefulWidget {
+  const ForgotPasswordFormWidget({super.key});
 
   @override
-  State<_ForgotPasswordFormWidget> createState() =>
+  State<ForgotPasswordFormWidget> createState() =>
       _ForgotPasswordFormWidgetState();
 }
 
-class _ForgotPasswordFormWidgetState extends State<_ForgotPasswordFormWidget> {
+class _ForgotPasswordFormWidgetState extends State<ForgotPasswordFormWidget> {
   bool isObscuredPassword = true;
 
   @override
@@ -89,14 +89,14 @@ class _ForgotPasswordFormWidgetState extends State<_ForgotPasswordFormWidget> {
           ),
         ),
         SizedBox(height: 30),
-        _ResetPasswordButtonWidget(),
+        ResetPasswordButtonWidget(),
       ],
     );
   }
 }
 
-class _ResetPasswordButtonWidget extends StatelessWidget {
-  const _ResetPasswordButtonWidget({super.key});
+class ResetPasswordButtonWidget extends StatelessWidget {
+  const ResetPasswordButtonWidget({super.key});
 
   Future<void> _showDialog(BuildContext context) async {
     return showDialog<void>(
@@ -112,6 +112,7 @@ class _ResetPasswordButtonWidget extends StatelessWidget {
             child: AlertDialog(
               // Заголовок окна
               content: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.email_rounded),
                   Text(
@@ -186,8 +187,8 @@ class _ResetPasswordButtonWidget extends StatelessWidget {
   }
 }
 
-class _TitleWidget extends StatelessWidget {
-  const _TitleWidget({super.key});
+class TitleWidget extends StatelessWidget {
+  const TitleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

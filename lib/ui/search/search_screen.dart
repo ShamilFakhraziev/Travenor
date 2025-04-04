@@ -33,7 +33,7 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           children: [
             SizedBox(height: 30),
-            _AppBarWidget(),
+            AppBarWidget(),
             SizedBox(height: 30),
             SizedBox(
               height: 48,
@@ -100,7 +100,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
 
                 itemBuilder: (context, index) {
-                  return _SearchPlacesGridItem(destination: _dest);
+                  return SearchPlacesGridItem(destination: _dest);
                 },
               ),
             ),
@@ -111,8 +111,8 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 }
 
-class _SearchPlacesGridItem extends StatelessWidget {
-  const _SearchPlacesGridItem({super.key, required this.destination});
+class SearchPlacesGridItem extends StatelessWidget {
+  const SearchPlacesGridItem({super.key, required this.destination});
 
   final Destination destination;
 
@@ -199,8 +199,8 @@ class _SearchPlacesGridItem extends StatelessWidget {
   }
 }
 
-class _AppBarWidget extends StatelessWidget {
-  const _AppBarWidget({super.key});
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

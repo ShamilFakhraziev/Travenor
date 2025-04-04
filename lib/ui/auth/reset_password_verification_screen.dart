@@ -31,11 +31,11 @@ class ResetPasswordVerificationScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 40),
-                  const _TitleWidget(),
+                  const TitleWidget(),
                   SizedBox(height: 40),
-                  _VerifyFormWidget(),
+                  VerifyFormWidget(),
                   SizedBox(height: 16),
-                  _ResentCodeWidget(),
+                  ResentCodeWidget(),
                 ],
               ),
             ),
@@ -46,20 +46,19 @@ class ResetPasswordVerificationScreen extends StatelessWidget {
   }
 }
 
-class _ResentCodeWidget extends StatefulWidget {
-  const _ResentCodeWidget({super.key});
+class ResentCodeWidget extends StatefulWidget {
+  const ResentCodeWidget({super.key});
 
   @override
-  State<_ResentCodeWidget> createState() => _ResentCodeWidgetState();
+  State<ResentCodeWidget> createState() => _ResentCodeWidgetState();
 }
 
-class _ResentCodeWidgetState extends State<_ResentCodeWidget> {
+class _ResentCodeWidgetState extends State<ResentCodeWidget> {
   bool _isButtonEnabled = false;
   Timer? timer;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     timer = Timer.periodic(Duration(minutes: 2), (timer) {
       setState(() {
@@ -70,7 +69,6 @@ class _ResentCodeWidgetState extends State<_ResentCodeWidget> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     timer?.cancel();
     super.dispose();
   }
@@ -110,43 +108,45 @@ class _ResentCodeWidgetState extends State<_ResentCodeWidget> {
   }
 }
 
-class _VerifyFormWidget extends StatefulWidget {
-  const _VerifyFormWidget({super.key});
+class VerifyFormWidget extends StatefulWidget {
+  const VerifyFormWidget({super.key});
 
   @override
-  State<_VerifyFormWidget> createState() => _VerifyFormWidgetState();
+  State<VerifyFormWidget> createState() => _VerifyFormWidgetState();
 }
 
-class _VerifyFormWidgetState extends State<_VerifyFormWidget> {
+class _VerifyFormWidgetState extends State<VerifyFormWidget> {
   bool isObscuredPassword = true;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Align(alignment: Alignment.centerLeft, child: _VerifyFormTitle()),
+        Align(alignment: Alignment.centerLeft, child: VerifyFormTitle()),
         SizedBox(height: 30),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _VerifyCodeItemWidget(),
+            // TODO: Middle. Поработать с фокус нодой для автоматического переключения после ввода цифры
+            // TODO: Minor. Сделать внутри виджета на ввод только цифра 0-9
+            VerifyCodeItemWidget(),
             SizedBox(width: 20),
-            _VerifyCodeItemWidget(),
+            VerifyCodeItemWidget(),
             SizedBox(width: 20),
-            _VerifyCodeItemWidget(),
+            VerifyCodeItemWidget(),
             SizedBox(width: 20),
-            _VerifyCodeItemWidget(),
+            VerifyCodeItemWidget(),
           ],
         ),
         SizedBox(height: 30),
-        _VerifyButtonWidget(),
+        VerifyButtonWidget(),
       ],
     );
   }
 }
 
-class _VerifyFormTitle extends StatelessWidget {
-  const _VerifyFormTitle({super.key});
+class VerifyFormTitle extends StatelessWidget {
+  const VerifyFormTitle({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -165,8 +165,8 @@ class _VerifyFormTitle extends StatelessWidget {
   }
 }
 
-class _VerifyCodeItemWidget extends StatelessWidget {
-  const _VerifyCodeItemWidget({super.key});
+class VerifyCodeItemWidget extends StatelessWidget {
+  const VerifyCodeItemWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -204,8 +204,8 @@ class _VerifyCodeItemWidget extends StatelessWidget {
   }
 }
 
-class _VerifyButtonWidget extends StatelessWidget {
-  const _VerifyButtonWidget({super.key});
+class VerifyButtonWidget extends StatelessWidget {
+  const VerifyButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -235,8 +235,8 @@ class _VerifyButtonWidget extends StatelessWidget {
   }
 }
 
-class _TitleWidget extends StatelessWidget {
-  const _TitleWidget({super.key});
+class TitleWidget extends StatelessWidget {
+  const TitleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

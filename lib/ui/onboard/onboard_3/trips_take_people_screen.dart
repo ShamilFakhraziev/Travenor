@@ -12,23 +12,23 @@ class TripsTakePeopleScreen extends StatelessWidget {
       color: Colors.white,
       child: Column(
         children: [
-          _ImageWidget(),
+          ImageWidget(),
           SizedBox(height: 30),
-          _TitleWidget(),
+          TitleWidget(),
           SizedBox(height: 10),
-          _DescriptionWidget(),
+          DescriptionWidget(),
           SizedBox(height: 20),
           SelectBarWidget(selectedPageNumber: 3, pagesCount: 3),
           SizedBox(height: 30),
-          _NextButtonWidget(),
+          NextButtonWidget(),
         ],
       ),
     );
   }
 }
 
-class _NextButtonWidget extends StatelessWidget {
-  const _NextButtonWidget({super.key});
+class NextButtonWidget extends StatelessWidget {
+  const NextButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +58,8 @@ class _NextButtonWidget extends StatelessWidget {
   }
 }
 
-class _TitleWidget extends StatelessWidget {
-  const _TitleWidget({super.key});
+class TitleWidget extends StatelessWidget {
+  const TitleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,6 @@ class _TitleWidget extends StatelessWidget {
       children: [
         const Text(
           "People don`t take trips,",
-
           style: TextStyle(
             decoration: TextDecoration.none,
             color: Colors.black,
@@ -110,8 +109,8 @@ class _TitleWidget extends StatelessWidget {
   }
 }
 
-class _DescriptionWidget extends StatelessWidget {
-  const _DescriptionWidget({super.key});
+class DescriptionWidget extends StatelessWidget {
+  const DescriptionWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -133,8 +132,8 @@ class _DescriptionWidget extends StatelessWidget {
   }
 }
 
-class _ImageWidget extends StatelessWidget {
-  const _ImageWidget({super.key});
+class ImageWidget extends StatelessWidget {
+  const ImageWidget({super.key});
 
   final double _radiusOfBorder = 30;
 
