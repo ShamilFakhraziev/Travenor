@@ -126,6 +126,10 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   bool isObscuredPassword = true;
+  final InputBorder _inputBorder = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(16),
+    borderSide: BorderSide(color: Colors.transparent, width: 0),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -143,18 +147,9 @@ class _AuthFormState extends State<AuthForm> {
               labelText: "Email",
               labelStyle: TextStyle(),
               // TODO: Minor.Мог вынести в отдельную переменную transparentBorder
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(color: Colors.transparent, width: 0),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(color: Colors.transparent, width: 0),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(color: Colors.transparent, width: 0),
-              ),
+              border: _inputBorder,
+              enabledBorder: _inputBorder,
+              focusedBorder: _inputBorder,
             ),
             style: TextStyle(
               color: Colors.black,
@@ -190,18 +185,9 @@ class _AuthFormState extends State<AuthForm> {
               ),
               labelText: "Password",
               labelStyle: TextStyle(),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(color: Colors.transparent, width: 0),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(color: Colors.transparent, width: 0),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide(color: Colors.transparent, width: 0),
-              ),
+              border: _inputBorder,
+              enabledBorder: _inputBorder,
+              focusedBorder: _inputBorder,
             ),
             style: TextStyle(
               color: Colors.black,

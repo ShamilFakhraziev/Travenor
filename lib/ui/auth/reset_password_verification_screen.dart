@@ -128,8 +128,6 @@ class _VerifyFormWidgetState extends State<VerifyFormWidget> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // TODO: Middle. Поработать с фокус нодой для автоматического переключения после ввода цифры
-            // TODO: Minor. Сделать внутри виджета на ввод только цифра 0-9
             VerifyCodeItemWidget(),
             SizedBox(width: 20),
             VerifyCodeItemWidget(),
