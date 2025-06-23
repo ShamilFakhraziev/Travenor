@@ -12,9 +12,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
   CalendarFormat _calendarFormat = CalendarFormat.week;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
-  final Destination _dest = Destination(
+  final Destination _destination = Destination(
     id: 1,
-    photos: <String>[
+    imageUrls: <String>[
       "assets/images/alt.jpeg",
       "assets/images/alt1.jpeg",
       "assets/images/alt2.jpeg",
@@ -33,7 +33,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     DateTime.utc(2025, 03, 31): [
       Destination(
         id: 1,
-        photos: <String>[
+        imageUrls: <String>[
           "assets/images/alt.jpeg",
           "assets/images/alt1.jpeg",
           "assets/images/alt2.jpeg",
@@ -48,38 +48,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
       ),
       Destination(
         id: 1,
-        photos: <String>[
-          "assets/images/alt.jpeg",
-          "assets/images/alt1.jpeg",
-          "assets/images/alt2.jpeg",
-        ],
-        title: "The Golden Mountains of Altai",
-        country: "Russia",
-        district: "Altai",
-        rating: 5,
-        price: 60,
-        about:
-            "The Golden Mountains of Altai are the heart of Siberia, a region captivating with its wild beauty. They are not just mountains, but an entire system of ranges where peaks touch the sky and glaciers feed crystal-clear rivers. Here, alpine meadows are overflowing with flowers, and dense coniferous forests hold the secrets of ancient shamans.",
-      ),
-
-      Destination(
-        id: 1,
-        photos: <String>[
-          "assets/images/alt.jpeg",
-          "assets/images/alt1.jpeg",
-          "assets/images/alt2.jpeg",
-        ],
-        title: "The Golden Mountains of Altai",
-        country: "Russia",
-        district: "Altai",
-        rating: 5,
-        price: 60,
-        about:
-            "The Golden Mountains of Altai are the heart of Siberia, a region captivating with its wild beauty. They are not just mountains, but an entire system of ranges where peaks touch the sky and glaciers feed crystal-clear rivers. Here, alpine meadows are overflowing with flowers, and dense coniferous forests hold the secrets of ancient shamans.",
-      ),
-      Destination(
-        id: 1,
-        photos: <String>[
+        imageUrls: <String>[
           "assets/images/alt.jpeg",
           "assets/images/alt1.jpeg",
           "assets/images/alt2.jpeg",
@@ -95,7 +64,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
       Destination(
         id: 1,
-        photos: <String>[
+        imageUrls: <String>[
           "assets/images/alt.jpeg",
           "assets/images/alt1.jpeg",
           "assets/images/alt2.jpeg",
@@ -110,7 +79,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
       ),
       Destination(
         id: 1,
-        photos: <String>[
+        imageUrls: <String>[
           "assets/images/alt.jpeg",
           "assets/images/alt1.jpeg",
           "assets/images/alt2.jpeg",
@@ -126,7 +95,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
       Destination(
         id: 1,
-        photos: <String>[
+        imageUrls: <String>[
           "assets/images/alt.jpeg",
           "assets/images/alt1.jpeg",
           "assets/images/alt2.jpeg",
@@ -141,7 +110,38 @@ class _CalendarScreenState extends State<CalendarScreen> {
       ),
       Destination(
         id: 1,
-        photos: <String>[
+        imageUrls: <String>[
+          "assets/images/alt.jpeg",
+          "assets/images/alt1.jpeg",
+          "assets/images/alt2.jpeg",
+        ],
+        title: "The Golden Mountains of Altai",
+        country: "Russia",
+        district: "Altai",
+        rating: 5,
+        price: 60,
+        about:
+            "The Golden Mountains of Altai are the heart of Siberia, a region captivating with its wild beauty. They are not just mountains, but an entire system of ranges where peaks touch the sky and glaciers feed crystal-clear rivers. Here, alpine meadows are overflowing with flowers, and dense coniferous forests hold the secrets of ancient shamans.",
+      ),
+
+      Destination(
+        id: 1,
+        imageUrls: <String>[
+          "assets/images/alt.jpeg",
+          "assets/images/alt1.jpeg",
+          "assets/images/alt2.jpeg",
+        ],
+        title: "The Golden Mountains of Altai",
+        country: "Russia",
+        district: "Altai",
+        rating: 5,
+        price: 60,
+        about:
+            "The Golden Mountains of Altai are the heart of Siberia, a region captivating with its wild beauty. They are not just mountains, but an entire system of ranges where peaks touch the sky and glaciers feed crystal-clear rivers. Here, alpine meadows are overflowing with flowers, and dense coniferous forests hold the secrets of ancient shamans.",
+      ),
+      Destination(
+        id: 1,
+        imageUrls: <String>[
           "assets/images/alt.jpeg",
           "assets/images/alt1.jpeg",
           "assets/images/alt2.jpeg",
@@ -158,7 +158,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     DateTime.utc(2025, 04, 02): [
       Destination(
         id: 1,
-        photos: <String>[
+        imageUrls: <String>[
           "assets/images/alt.jpeg",
           "assets/images/alt1.jpeg",
           "assets/images/alt2.jpeg",
@@ -180,6 +180,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //TODO: !Middle.При множественном вызове одного  и того же метода подумоть можно ли его рещультаты вынести в отедльную переменную
+    final selectedDayEvents = _getEventsForDay(_selectedDay ?? _focusedDay);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -246,13 +248,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount:
-                          _getEventsForDay(_selectedDay ?? _focusedDay).length,
+                      itemCount: selectedDayEvents.length,
                       itemBuilder: (context, index) {
-                        final _dest =
-                            _getEventsForDay(
-                              _selectedDay ?? _focusedDay,
-                            )[index];
+                        final _dest = selectedDayEvents[index];
                         return SelectedDayItemWidget(dest: _dest);
                       },
                     ),
@@ -288,7 +286,7 @@ class AppBarWidget extends StatelessWidget {
                 backgroundColor: Color(0x101B1E28),
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed('/');
+                Navigator.of(context).pushNamed('/auth');
               },
               icon: Padding(
                 padding: const EdgeInsets.only(left: 6),
@@ -349,7 +347,7 @@ class SelectedDayItemWidget extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16),
                   child: Image.asset(
-                    dest.photos[0],
+                    dest.imageUrls[0],
                     width: 80,
                     height: 80,
                     fit: BoxFit.fill,
@@ -376,6 +374,7 @@ class SelectedDayItemWidget extends StatelessWidget {
                             ),
                           ),
                         ),
+                        //TODO: !Minor. Можно вынести в common widgets (видежты которые используются по всему приложению)
                         Row(
                           children: [
                             Icon(

@@ -17,56 +17,62 @@ class _MessageScreenState extends State<MessageScreen> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            SizedBox(height: 30),
-            AppBarWidget(),
-            SizedBox(height: 30),
-            MessagesAndEditButtonWidget(),
-            SizedBox(height: 10),
-            SizedBox(
-              height: 48,
-              width: 370,
-              child: TextField(
-                textAlignVertical: TextAlignVertical.center,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  filled: true,
-                  fillColor: AppColor.backButtonColor,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
-                      color: const Color.fromARGB(40, 0, 0, 0),
-                      width: 0,
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              SizedBox(height: 30),
+              AppBarWidget(),
+              SizedBox(height: 30),
+              MessagesAndEditButtonWidget(),
+              SizedBox(height: 10),
+              //TODO: !Middle. Можно было вынести в common widget
+              SizedBox(
+                height: 48,
+                width: 370,
+                child: TextField(
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(0),
+                    prefixIcon: Icon(Icons.search, size: 24),
+                    filled: true,
+                    fillColor: AppColor.backButtonColor,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide(
+                        color: const Color.fromARGB(40, 0, 0, 0),
+                        width: 0,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide(
+                        color: const Color.fromARGB(40, 0, 0, 0),
+                        width: 0,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide(
+                        color: const Color.fromARGB(40, 0, 0, 0),
+                        width: 0,
+                      ),
                     ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
-                      color: const Color.fromARGB(40, 0, 0, 0),
-                      width: 0,
-                    ),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: "sf",
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
-                      color: const Color.fromARGB(40, 0, 0, 0),
-                      width: 0,
-                    ),
-                  ),
-                ),
-                style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: "sf",
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
                 ),
               ),
-            ),
-            Align(alignment: Alignment.topLeft, child: MessagesListWidget()),
-          ],
+              SizedBox(height: 10),
+              MessagesListWidget(),
+            ],
+          ),
         ),
       ),
     );
@@ -78,19 +84,19 @@ class MessagesListWidget extends StatelessWidget {
   final Message message = Message(
     companion: User(
       id: 1,
-      name: "First Lastffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      name: "Anime Girl",
       profileImage: AppImage.profileImage,
     ),
-    body:
-        "Hifffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
-    status: MessageStatus.Unchecked,
+    body: "Hi",
+    status: MessageStatus.unchecked,
     date: DateTime(2025, 03, 28, 9, 53),
   );
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 500,
+    // TODO: затестить
+    return Expanded(
       child: ListView.builder(
+        padding: EdgeInsets.only(top: 10),
         itemCount: 10,
         itemBuilder: (context, index) {
           return Padding(
@@ -101,21 +107,17 @@ class MessagesListWidget extends StatelessWidget {
                 SizedBox(
                   width: 400,
                   height: 60,
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(20),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder:
-                                (context) => //ChatScreen(),
-                                    ChatWidget(companion: message.companion),
-                          ),
-                        );
-                      },
-                    ),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => //ChatScreen(),
+                                  ChatWidget(companion: message.companion),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -205,7 +207,7 @@ class MessagesListItemWidget extends StatelessWidget {
                         Icons.check,
                         size: 16,
                         color:
-                            message.status == MessageStatus.Checked
+                            message.status == MessageStatus.checked
                                 ? AppColor.primaryColor
                                 : Colors.grey,
                       ),
@@ -281,7 +283,9 @@ class Message {
   });
 }
 
-enum MessageStatus { Checked, Unchecked }
+//TODO: !Major. Обращать внимание на синии подчеркивания. Они помогают. Не называть элементы внутри enum с большой буквы
+//enum MessageStatus { Checked, Unchecked }
+enum MessageStatus { checked, unchecked }
 
 class MessagesAndEditButtonWidget extends StatelessWidget {
   const MessagesAndEditButtonWidget({super.key});

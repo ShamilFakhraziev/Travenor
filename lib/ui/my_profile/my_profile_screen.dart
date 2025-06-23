@@ -37,6 +37,7 @@ class ProfileSettings extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
+          //TODO: !Middle. Когда один и тот же item повторяется несколько раз задайся вопросом можно ли переделать через List.builder
           SettingsItem(icon: Icons.person_outline, name: "Profile"),
           SettingsItem(icon: Icons.bookmark_outline, name: "Bookmarked"),
           SettingsItem(icon: Icons.history, name: "Previous Trip"),
@@ -56,33 +57,32 @@ class SettingsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
-      child: SizedBox(
+      //TODO: !Middle. Когда у тебя sizedBox внутри ColoredBox или наоборот можно просто заменить на контэйнер
+      child: Container(
         height: 40,
-        child: ColoredBox(
-          color: const Color.fromRGBO(158, 158, 158, 0.04),
-          child: TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(iconColor: Colors.grey),
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Icon(icon, size: 28),
-                ),
-                Expanded(
-                  child: Text(
-                    name,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      fontFamily: 'sf',
-                      fontWeight: FontWeight.w500,
-                    ),
+        color: const Color.fromRGBO(158, 158, 158, 0.04),
+        child: TextButton(
+          onPressed: () {},
+          style: TextButton.styleFrom(iconColor: Colors.grey),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Icon(icon, size: 28),
+              ),
+              Expanded(
+                child: Text(
+                  name,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontFamily: 'sf',
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                Icon(Icons.arrow_forward_ios),
-              ],
-            ),
+              ),
+              Icon(Icons.arrow_forward_ios),
+            ],
           ),
         ),
       ),
@@ -96,7 +96,8 @@ class ProfileAchievements extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: const Color.fromRGBO(158, 158, 158, 0.04),
+      //TODO: !Minor. Можно было вынести в AppColors
+      color: AppColor.profileAchievmentsBackgroundColor,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: SizedBox(

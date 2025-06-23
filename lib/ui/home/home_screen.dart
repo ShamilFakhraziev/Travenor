@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_app/domain/api/mock_destinations_api.dart';
+import 'package:travel_app/domain/blocs/local/destinations/destinations_bloc.dart';
+import 'package:travel_app/domain/repositories/destinations_repository.dart';
+import 'package:travel_app/domain/services/service_locator.dart';
 import 'package:travel_app/helpers/colors/app_color.dart';
 import 'package:travel_app/helpers/images/app_image.dart';
 import 'package:travel_app/ui/my_profile/my_profile_screen.dart';
@@ -9,6 +14,7 @@ import 'package:travel_app/ui/notification/notifications_model.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  // TODO: !Minor. Быть внимательнее к содержимому скролов(должен ли ап бар уезжать)
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -34,7 +40,15 @@ class MainContentWidget extends StatelessWidget {
         children: [
           MainContentTitleWidget(),
           SizedBox(height: 10),
-          DestinationsListWidget(),
+          BlocProvider(
+            create:
+                (context) => DestinationsBloc(
+                  DestinationsRepository(
+                    serviceLocator.get<MockDestinationsApi>(),
+                  ),
+                ),
+            child: DestinationsListWidget(),
+          ),
         ],
       ),
     );
@@ -147,7 +161,9 @@ class AppBarWidget extends StatelessWidget {
               ),
               backgroundColor: AppColor.backButtonColor,
             ),
+
             onPressed: () {
+              //TODO: !Minor. Следить за единым стилем (если выбрал pushNamed значит использовать только его)
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) => const MyProfileScreen(),
@@ -180,11 +196,7 @@ class AppBarWidget extends StatelessWidget {
             ),
           ),
           IconButton(
-            style: IconButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22),
-              ),
-            ),
+            highlightColor: Colors.transparent,
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(

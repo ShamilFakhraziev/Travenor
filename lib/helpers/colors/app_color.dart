@@ -7,4 +7,10 @@ abstract class AppColor {
   static Color descriptionTextColor = Color(0xff7D848D);
   static Color skipButtonColor = Color.fromARGB(255, 61, 101, 128);
   static Color mainWordColor = Color(0xffFF7029);
+  static Color profileAchievmentsBackgroundColor = const Color.fromRGBO(
+    158,
+    158,
+    158,
+    0.1,
+  );
 }

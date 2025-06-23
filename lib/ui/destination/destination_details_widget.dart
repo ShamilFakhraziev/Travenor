@@ -18,6 +18,7 @@ class DestinationDetailsWidget extends StatelessWidget {
                 children: [
                   MainImageWidget(destination: destination),
                   SizedBox(height: 20),
+                  //TODO: !Major. Не обьединять виджеты, виджеты и тд через and, or и тд
                   TitleAndLocationWidget(destination: destination),
                   SizedBox(height: 24),
                   UnderImageInfoWidget(destination: destination),
@@ -216,27 +217,38 @@ class TitleAndLocationWidget extends StatelessWidget {
   }
 }
 
-class MainImageWidget extends StatelessWidget {
+class MainImageWidget extends StatefulWidget {
   const MainImageWidget({super.key, required this.destination});
 
   final Destination destination;
 
+  @override
+  State<MainImageWidget> createState() => _MainImageWidgetState();
+}
+
+class _MainImageWidgetState extends State<MainImageWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 350,
       child: Stack(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-            child: Image.asset(
-              destination.photos[0],
-              height: 350,
-              fit: BoxFit.fill,
-            ),
+          PageView.builder(
+            itemCount: widget.destination.imageUrls.length,
+            itemBuilder: (context, index) {
+              final currentImage = widget.destination.imageUrls[index];
+              return ClipRRect(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                ),
+                child: Image.network(
+                  currentImage,
+                  height: 350,
+                  fit: BoxFit.fill,
+                ),
+              );
+            },
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 35, horizontal: 20),

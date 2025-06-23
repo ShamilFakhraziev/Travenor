@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:travel_app/domain/entity/destination.dart';
 import 'package:travel_app/helpers/colors/app_color.dart';
@@ -10,9 +12,9 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final Destination _dest = Destination(
+  final Destination _destination = Destination(
     id: 1,
-    photos: <String>[
+    imageUrls: <String>[
       "assets/images/alt.jpeg",
       "assets/images/alt1.jpeg",
       "assets/images/alt2.jpeg",
@@ -27,90 +29,94 @@ class _SearchScreenState extends State<SearchScreen> {
   );
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            SizedBox(height: 30),
-            AppBarWidget(),
-            SizedBox(height: 30),
-            SizedBox(
-              height: 48,
-              width: 350,
-              child: TextField(
-                textAlignVertical: TextAlignVertical.center,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  suffix: IconButton(icon: Icon(Icons.mic), onPressed: () {}),
-                  prefixIcon: Icon(Icons.search),
-                  filled: true,
-                  fillColor: AppColor.backButtonColor,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
-                      color: const Color.fromARGB(40, 0, 0, 0),
-                      width: 0,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
-                      color: const Color.fromARGB(40, 0, 0, 0),
-                      width: 0,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
-                      color: const Color.fromARGB(40, 0, 0, 0),
-                      width: 0,
-                    ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          SizedBox(height: 30),
+          AppBarWidget(),
+          SizedBox(height: 30),
+          SizedBox(
+            height: 48,
+            width: 350,
+            child: TextField(
+              //TODO: !Задача. Без костылей исключительно красивый кот. Исправить проблему "низкой палки"
+              textAlignVertical: TextAlignVertical.center,
+              keyboardType: TextInputType.name,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(0),
+                suffixIcon: IconButton(
+                  padding: EdgeInsets.zero,
+                  icon: Icon(Icons.mic, size: 24),
+                  onPressed: () {},
+                ),
+                prefixIcon: Icon(Icons.search),
+                filled: true,
+                fillColor: AppColor.backButtonColor,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(
+                    color: const Color.fromARGB(40, 0, 0, 0),
+                    width: 0,
                   ),
                 ),
-                style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: "sf",
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(
+                    color: const Color.fromARGB(40, 0, 0, 0),
+                    width: 0,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(
+                    color: const Color.fromARGB(40, 0, 0, 0),
+                    width: 0,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 30),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Search Places",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'sf',
-                  fontWeight: FontWeight.w600,
-                ),
+              style: TextStyle(
+                color: Colors.black,
+                fontFamily: "sf",
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
               ),
             ),
-            SizedBox(
-              height: 1000,
-              child: GridView.builder(
-                itemCount: 20,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 30,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.9,
-                ),
+          ),
+          SizedBox(height: 30),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Search Places",
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'sf',
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          Expanded(
+            child: GridView.builder(
+              itemCount: 20,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 30,
+                mainAxisSpacing: 10,
+                childAspectRatio: 0.9,
+              ),
 
-                itemBuilder: (context, index) {
-                  return SearchPlacesGridItem(destination: _dest);
-                },
-              ),
+              itemBuilder: (context, index) {
+                return SearchPlacesGridItem(destination: _destination);
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
+//TODO: !Middle. Давать более абстрактные названия классам, методам и т.д. (отражать суть обьекта а не особенности его текущего использования)
 class SearchPlacesGridItem extends StatelessWidget {
   const SearchPlacesGridItem({super.key, required this.destination});
 
@@ -126,7 +132,8 @@ class SearchPlacesGridItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Image.asset(
-                destination.photos[0],
+                //TODO: !Minor. Использование геттеров ферст/ласт и тд предпочтительнее чем [0], [1] и тд
+                destination.imageUrls.first,
                 height: 124,
                 fit: BoxFit.fill,
               ),

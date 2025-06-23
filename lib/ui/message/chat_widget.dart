@@ -12,34 +12,36 @@ class ChatWidget extends StatefulWidget {
 }
 
 class _ChatWidgetState extends State<ChatWidget> {
-  final TextEditingController _newMessageCOntroller = TextEditingController();
+  final TextEditingController _newMessageController = TextEditingController();
 
   bool _isMe = false;
   void sendMessage(String text) {
-    ChatMessage? newMessage = ChatMessage(
+    final newMessage = ChatMessage(
       body: text,
       isMe: _isMe,
       companion: widget.companion,
-      status: MessageStatus.Checked,
+      status: MessageStatus.checked,
       date: DateTime.now(),
     );
+    //TODO: !Minor. Можно было бы вынести в отедльный метод addNewMessage
     _messages.insert(0, newMessage);
-    _newMessageCOntroller.text = '';
+    _newMessageController.text = '';
     _isMe = !_isMe;
     setState(() {});
   }
 
-  List<ChatMessage> _messages = <ChatMessage>[];
+  //TODO: !Middle. При создании final листов мы можем добавлять/удалять элементы так как сам обьект листа не меняется
+  //List<ChatMessage> _messages = <ChatMessage>[];
+  final _messages = <ChatMessage>[];
   @override
   void initState() {
     super.initState();
     final ChatMessage message = ChatMessage(
       companion: widget.companion,
-      body:
-          "Hellfsssssssssssssssssfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffsssssssssssso",
+      body: "Hello",
       isMe: true,
       date: DateTime.now(),
-      status: MessageStatus.Checked,
+      status: MessageStatus.checked,
     );
     _messages.add(message);
     setState(() {});
@@ -66,7 +68,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                     width: 310,
                     child: TextField(
                       onSubmitted: sendMessage,
-                      controller: _newMessageCOntroller,
+                      controller: _newMessageController,
                       textAlignVertical: TextAlignVertical.center,
                       textInputAction: TextInputAction.send,
 
@@ -228,7 +230,7 @@ class ChatMessage extends StatelessWidget {
                             Icons.check,
                             size: 16,
                             color:
-                                status == MessageStatus.Checked
+                                status == MessageStatus.checked
                                     ? Colors.green
                                     : Colors.grey,
                           ),

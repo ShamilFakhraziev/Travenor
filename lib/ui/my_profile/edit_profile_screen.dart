@@ -10,22 +10,29 @@ class EditProfileScreen extends StatelessWidget {
     return Material(
       child: ColoredBox(
         color: Colors.white,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              AppBarWidget(),
-              ProfileImage(),
-              SizedBox(height: 8),
-              ProfileUserName(),
-              SizedBox(height: 25),
-              FirstNameWidget(),
-              SizedBox(height: 15),
-              LastNameWidget(),
-              SizedBox(height: 15),
-              LocationWidget(),
-              SizedBox(height: 15),
-              MobileNumberWidget(),
-            ],
+        //TODO: !Очень важно! надо просто загуглить про клавиатуру (улыбайся когда будешь гуглить! обязательно!)
+        child: Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                AppBarWidget(),
+                ProfileImage(),
+                SizedBox(height: 8),
+                ProfileUserName(),
+                SizedBox(height: 25),
+                //TODO: !Middle. Все что ниже можно было бы вынести в отдельный виджет хз какое название. Суть та же + визулал тот же
+                FirstNameWidget(),
+                SizedBox(height: 15),
+                LastNameWidget(),
+                SizedBox(height: 15),
+                LocationWidget(),
+                SizedBox(height: 15),
+                MobileNumberWidget(),
+              ],
+            ),
           ),
         ),
       ),

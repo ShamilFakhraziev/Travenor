@@ -28,15 +28,21 @@ class NotificationButtonsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = NotificationsModelProvider.watch(context);
-    if (model == null) return SizedBox.shrink();
-    if (model.getButton == null)
+    //TODO: !Middle. Старться не делать dynamic переменных там где это возможно
+    final model = NotificationsModelProvider.watch<NotificationsModel>(context);
+    if (model == null) {
+      return SizedBox.shrink();
+    }
+    //TODO: !Middle. В данном дейтсвии нет ui логики, поэтому можно было бы вынести в инит стэйт
+    if (model.getButton == null) {
       model.setButton(NotificationTimeButtons.Recent);
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // TODO: !Middle.Можно было бы вынести в отдельный виджет в папке Widgets внутри текущей фичи
           TextButton(
             child: Text(
               "Recent",
@@ -207,6 +213,7 @@ class NotificationItemWidget extends StatelessWidget {
   }
 }
 
+//TODO: !Middle. Можно былло вынести в отдельный common виджет
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({super.key});
 

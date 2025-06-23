@@ -5,6 +5,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final mainNavigation = MainNavigation();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,9 +13,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-
       routes: mainNavigation.routes,
-      initialRoute: mainNavigation.initialRoute(false),
+      initialRoute: mainNavigation.initialRoute(true),
     );
   }
 }

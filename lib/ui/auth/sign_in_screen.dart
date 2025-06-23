@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_app/domain/blocs/global/auth/auth_bloc.dart';
+import 'package:travel_app/domain/blocs/global/auth/authentication_event.dart';
+import 'package:travel_app/domain/blocs/global/auth/authentication_state.dart';
 import 'package:travel_app/helpers/colors/app_color.dart';
 import 'package:travel_app/helpers/images/app_image.dart';
 
@@ -12,7 +16,6 @@ class SignInScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           alignment: Alignment.center,
-          // TODO:Minor.Когда в onPressed, онтап и тд единственный метод без аргументов - можем убрать скобки у метода и конструкцию () =>
           onPressed: Navigator.of(context).pop,
           icon: Icon(Icons.arrow_back_ios),
           style: IconButton.styleFrom(
@@ -22,30 +25,44 @@ class SignInScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(
-        child: ColoredBox(
-          color: Colors.white,
-          child: SizedBox.expand(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(height: 40),
-                  const TitleWidget(),
-                  SizedBox(height: 40),
-                  AuthForm(),
-                  SizedBox(height: 30),
-                  RedirectToSignUpWidget(),
-                  Text(
-                    "Or connect",
-                    style: TextStyle(
-                      fontFamily: "sf",
-                      fontSize: 14,
-                      color: AppColor.descriptionTextColor,
+      body: BlocListener<AuthenticationBloc, AuthenticationState>(
+        listener: (context, state) {
+          if (state is AuthenticationSuccess) {
+            // ScaffoldMessenger.of(
+            //   context,
+            // ).showSnackBar(SnackBar(content: Text(state.username)));
+            Navigator.of(context).pushReplacementNamed("/home");
+          } else if (state is AuthenticationFailure) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
+          }
+        },
+        child: Center(
+          child: ColoredBox(
+            color: Colors.white,
+            child: SizedBox.expand(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 40),
+                    const TitleWidget(),
+                    SizedBox(height: 40),
+                    AuthForm(),
+                    SizedBox(height: 30),
+                    RedirectToSignUpWidget(),
+                    Text(
+                      "Or connect",
+                      style: TextStyle(
+                        fontFamily: "sf",
+                        fontSize: 14,
+                        color: AppColor.descriptionTextColor,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 40),
-                  FooterWidget(),
-                ],
+                    SizedBox(height: 40),
+                    FooterWidget(),
+                  ],
+                ),
               ),
             ),
           ),
@@ -125,11 +142,22 @@ class AuthForm extends StatefulWidget {
 }
 
 class _AuthFormState extends State<AuthForm> {
+  late TextEditingController _usernameController;
+  late TextEditingController _passwordController;
+
   bool isObscuredPassword = true;
   final InputBorder _inputBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(16),
     borderSide: BorderSide(color: Colors.transparent, width: 0),
   );
+
+  @override
+  void initState() {
+    // TODO: !implement initState
+    super.initState();
+    _usernameController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,15 +166,15 @@ class _AuthFormState extends State<AuthForm> {
         SizedBox(
           height: 56,
           width: 350,
-          // TODO: Middle.Мог вынести в отдельный виджет AppTextField
+          // TODO: !Middle.Мог вынести в отдельный виджет AppTextField
           child: TextField(
+            controller: _usernameController,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               filled: true,
               fillColor: AppColor.backButtonColor,
               labelText: "Email",
               labelStyle: TextStyle(),
-              // TODO: Minor.Мог вынести в отдельную переменную transparentBorder
               border: _inputBorder,
               enabledBorder: _inputBorder,
               focusedBorder: _inputBorder,
@@ -166,7 +194,7 @@ class _AuthFormState extends State<AuthForm> {
           child: TextField(
             obscureText: isObscuredPassword,
             obscuringCharacter: '*',
-
+            controller: _passwordController,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               filled: true,
@@ -179,7 +207,6 @@ class _AuthFormState extends State<AuthForm> {
                 },
 
                 icon: Icon(
-                  // TODO: Major.Какоу нахуй == false. Когда у тебя блуева переменная то она по дефолту равна true, а !она равна false
                   isObscuredPassword ? Icons.visibility_off : Icons.visibility,
                 ),
               ),
@@ -218,14 +245,23 @@ class _AuthFormState extends State<AuthForm> {
           ),
         ),
         SizedBox(height: 30),
-        SignInButtonWidget(),
+        SignInButtonWidget(
+          usernameController: _usernameController,
+          passwordController: _passwordController,
+        ),
       ],
     );
   }
 }
 
 class SignInButtonWidget extends StatelessWidget {
-  const SignInButtonWidget({super.key});
+  final TextEditingController usernameController;
+  final TextEditingController passwordController;
+  const SignInButtonWidget({
+    super.key,
+    required this.usernameController,
+    required this.passwordController,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -234,7 +270,12 @@ class SignInButtonWidget extends StatelessWidget {
       height: 56,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).pushNamed("/home");
+          BlocProvider.of<AuthenticationBloc>(context).add(
+            LoginRequested(
+              username: usernameController.text,
+              password: passwordController.text,
+            ),
+          );
         },
         child: Text(
           "Sign In",

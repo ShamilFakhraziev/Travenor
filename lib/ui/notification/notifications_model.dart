@@ -4,6 +4,8 @@ import 'package:travel_app/helpers/images/app_image.dart';
 
 enum NotificationTimeButtons { Recent, Earlier, Archieved }
 
+// TODO: !Middle. Данный класс не должен находиться в ui папке
+
 class NotificationsModel extends ChangeNotifier {
   final List<UserNotification> _notifications = <UserNotification>[
     UserNotification(
